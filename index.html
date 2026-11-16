@@ -150,6 +150,10 @@ section{position:relative}
 .prod .pic{aspect-ratio:1/0.82;background:radial-gradient(circle at 50% 45%,#2a2a31 0%,#141418 70%);display:grid;place-items:center;position:relative;overflow:hidden}
 .prod .pic svg{width:78%;height:78%;transition:transform .5s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 18px 18px rgba(0,0,0,.6))}
 .prod:hover .pic svg{transform:scale(1.07) rotate(-2deg)}
+.prod .pic.photo{background:#fff}
+.prod .pic.photo img{width:88%;height:88%;object-fit:contain;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.prod .pic.photo.cover img{width:100%;height:100%;object-fit:cover}
+.prod:hover .pic.photo img{transform:scale(1.06)}
 .prod .tag{position:absolute;top:.8rem;left:.8rem;font-size:.66rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;background:rgba(0,0,0,.55);border:1px solid #333;padding:.3rem .55rem;border-radius:6px}
 .prod .tag.hot{background:var(--red);border-color:var(--red)}
 .prod .body{padding:1.1rem 1.1rem 1.2rem;display:flex;flex-direction:column;gap:.4rem;flex:1}
@@ -646,28 +650,27 @@ const P={ // product illustrations
  cam:()=>`<svg viewBox="0 0 200 200"><rect x="40" y="70" width="120" height="60" rx="14" fill="#18181c" stroke="#55575e" stroke-width="3"/><circle cx="100" cy="100" r="22" fill="#0a0a0c" stroke="#888" stroke-width="3"/><circle cx="100" cy="100" r="10" fill="#1d3a6b"/><circle cx="96" cy="96" r="3" fill="#fff" opacity=".6"/></svg>`
 };
 const products=[
- {c:'Alto-falantes',t:'Alto-falante 6" coaxial',d:'Som limpo e encorpado para as portas, ótimo custo-benefício.',i:P.speaker(),tag:'Mais vendido',hot:1},
- {c:'Alto-falantes',t:'Alto-falante 6x9" quadriaxial',d:'Graves e agudos em um só componente para tampão traseiro.',i:P.sixnine()},
- {c:'Alto-falantes',t:'Subwoofer 12"',d:'Pressão sonora de verdade para caixa selada ou dutada.',i:P.sub(),tag:'Grave',hot:1},
- {c:'Alto-falantes',t:'Médio-grave 8"',d:'Para quem quer voz e batida forte no carro.',i:P.speaker('#ff7a00')},
- {c:'Alto-falantes',t:'Tweeter / Super tweeter',d:'Agudos brilhantes e definidos para completar o kit.',i:P.tweeter()},
- {c:'Rádios Pioneer',t:'Rádio Pioneer Bluetooth USB',d:'1-DIN com Bluetooth, USB e controle pelo celular.',i:P.radio(),tag:'Pioneer'},
- {c:'Rádios Pioneer',t:'Rádio Pioneer MIXTRAX',d:'Iluminação personalizável e efeitos MIXTRAX para suas músicas.',i:P.radio('#ff4b4b'),tag:'Pioneer'},
- {c:'Multimídias',t:'Multimídia 2-DIN 7"',d:'Tela touch, espelhamento do celular e câmera de ré.',i:P.multi(),tag:'Novidade',hot:1},
- {c:'Multimídias',t:'Multimídia Android Auto / CarPlay',d:'GPS, Spotify e apps na tela do seu painel.',i:P.multi()},
- {c:'Multimídias',t:'Câmera de ré',d:'Mais segurança para manobrar, integra com a multimídia.',i:P.cam()},
+ {c:'Alto-falantes',t:'Alto-falante coaxial JL Audio',d:'Som limpo e encorpado para as portas, com tweeter embutido.',img:'p-coaxial.webp',tag:'Mais vendido',hot:1},
+ {c:'Alto-falantes',t:'Kit Bravox 6x9" + 6"',d:'Kit completo para portas e tampão traseiro, graves e agudos na medida.',img:'p-kit6x9.webp'},
+ {c:'Alto-falantes',t:'Woofer 12" alta potência',d:'Pressão sonora de verdade para caixa selada ou dutada.',img:'p-woofer12.webp',tag:'Grave',hot:1},
+ {c:'Alto-falantes',t:'Alto-falante 4" Hurricane (par)',d:'Reposição prática para portas dianteiras e painel.',img:'p-4pol.webp'},
+ {c:'Rádios Pioneer',t:'Rádio Pioneer MVH-145BR',d:'Bluetooth, USB, iluminação azul e controle pelo celular.',img:'p-pioneer.webp',tag:'Pioneer'},
+ {c:'Multimídias',t:'Multimídia Android tela vertical',d:'Tela grande estilo tablet com GPS, Bluetooth, rádio e apps.',img:'p-multivert.webp',tag:'Novidade',hot:1},
+ {c:'Multimídias',t:'Multimídia Android Auto / CarPlay',d:'Espelhamento do celular, Spotify, Waze e mapas no painel.',img:'p-carplay.webp',fit:'cover'},
+ {c:'Multimídias',t:'Câmera de ré',d:'Kit completo para manobrar com segurança, integra com a multimídia.',img:'p-camera.webp'},
  {c:'Alarmes',t:'Alarme automotivo com controle',d:'Bloqueio, sensor de presença e sirene de alta potência.',i:P.alarm()},
  {c:'Alarmes',t:'Chave canivete com controle',d:'Moderniza a chave do seu carro com controle integrado.',i:P.key()},
- {c:'Lâmpadas',t:'Super LED farol H4 / H7',d:'Luz branca intensa e mais alcance no farol.',i:P.bulb('#cfe6ff'),tag:'Top',hot:1},
- {c:'Lâmpadas',t:'Lâmpada halógena',d:'Reposição para farol, milha e lanterna.',i:P.bulb('#ffd27a')},
- {c:'LEDs',t:'Fita de LED RGB',d:'Iluminação interna e externa com várias cores e efeitos.',i:P.strip()},
- {c:'LEDs',t:'LED pingo / cortesia',d:'Lanterna, placa e luz interna em LED.',i:P.bulb('#ffffff')},
+ {c:'Lâmpadas',t:'Super LED H4',d:'Luz branca intensa e mais alcance no farol, encaixe plug and play.',img:'p-ledh4.webp',tag:'Top',hot:1},
+ {c:'Lâmpadas',t:'Kit LED farol COB',d:'Kit com reatores para farol e milha, luz branca de alto rendimento.',img:'p-ledcob.webp'},
+ {c:'Lâmpadas',t:'Farol de LED C6',d:'Compacto, com cooler e várias bases (H1, H3, H7, H4...).',img:'p-c6.webp'},
+ {c:'LEDs',t:'Fita neon LED interna',d:'Iluminação ambiente no painel e nas portas, várias cores.',img:'p-neon.webp',fit:'cover'},
+ {c:'LEDs',t:'LED pingo T10',d:'Lanterna, placa e luz interna em LED branco.',img:'p-t10.webp'},
  {c:'Módulos e caixas',t:'Módulo amplificador 4 canais',d:'Potência para alimentar todo o seu som.',i:P.amp()},
- {c:'Módulos e caixas',t:'Caixa de som personalizada',d:'Projeto sob medida para o seu porta-malas.',i:P.box()}
+ {c:'Módulos e caixas',t:'Caixa de som personalizada',d:'Projeto em MDF sob medida para o seu porta-malas.',img:'p-caixa.webp',fit:'cover'}
 ];
 const cats=['Todos',...new Set(products.map(p=>p.c))];
 $('#filters').innerHTML=cats.map((c,i)=>`<button class="chip${i?'':' on'}" data-c="${c}">${c}</button>`).join('');
-$('#prodGrid').innerHTML=products.map((p,i)=>`<article class="prod reveal" data-c="${p.c}"><div class="pic">${p.tag?`<span class="tag${p.hot?' hot':''}">${p.tag}</span>`:''}${p.i}</div><div class="body"><span class="kicker" style="font-size:.62rem">${p.c}</span><h3>${p.t}</h3><p class="desc">${p.d}</p><div class="row"><a class="ask" href="#" data-wa="Olá, Car Mania! Quero saber o preço de: ${p.t}.">Consultar</a><button class="add" data-i="${i}">+ Lista</button></div></div></article>`).join('');
+$('#prodGrid').innerHTML=products.map((p,i)=>`<article class="prod reveal" data-c="${p.c}"><div class="pic${p.img?' photo'+(p.fit==='cover'?' cover':''):''}">${p.tag?`<span class="tag${p.hot?' hot':''}">${p.tag}</span>`:''}${p.img?`<img src="${p.img}" alt="${p.t}" loading="lazy">`:p.i}</div><div class="body"><span class="kicker" style="font-size:.62rem">${p.c}</span><h3>${p.t}</h3><p class="desc">${p.d}</p><div class="row"><a class="ask" href="#" data-wa="Olá, Car Mania! Quero saber o preço de: ${p.t}.">Consultar</a><button class="add" data-i="${i}">+ Lista</button></div></div></article>`).join('');
 $('#filters').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===b));const c=b.dataset.c;document.querySelectorAll('.prod').forEach(p=>{p.classList.toggle('hide',c!=='Todos'&&p.dataset.c!==c);p.classList.add('in')});});
 
 /* cart */
