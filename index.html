@@ -25,7 +25,9 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--white);font-family:'Barlow',system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+html{overflow-x:hidden}
+@supports(overflow:clip){body{overflow-x:clip}}
+body{background:var(--bg);color:var(--white);font-family:'Barlow',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
@@ -57,7 +59,8 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 @media(max-width:560px){#soundLbl{display:none}.sound-toggle{padding:.6rem .7rem}.nav-cta{padding:.6rem .9rem}}
 
 /* ===== HERO SCROLL ===== */
-.hero{position:relative;height:460vh}
+.hero{position:relative;height:220vh}
+@media(max-width:760px){.hero{height:180vh}}
 .hero-stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;perspective:1100px}
 .hero canvas{position:absolute;inset:0;width:100%;height:100%}
 #bgCanvas{filter:blur(28px) saturate(1.2) brightness(.45);transform:scale(1.15)}
@@ -83,12 +86,13 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .eq-hero i{flex:1;background:linear-gradient(to top,var(--red),transparent);height:6%;border-radius:2px 2px 0 0;transition:height .08s}
 
 /* ===== MARQUEE ===== */
-.marquee{background:var(--red);transform:rotate(-1.5deg);margin:-2rem -2vw 0;position:relative;z-index:3;overflow:hidden;box-shadow:0 20px 50px -20px rgba(227,18,27,.6)}
+.mq-wrap{overflow:hidden;margin-top:-2rem;padding:1.2rem 0;position:relative;z-index:3}
+.marquee{background:var(--red);transform:rotate(-1.5deg);margin:0 -3%;width:106%;position:relative;z-index:3;overflow:hidden;box-shadow:0 20px 50px -20px rgba(227,18,27,.6)}
 .marquee .track{display:flex;gap:2.5rem;padding:.9rem 0;white-space:nowrap;animation:mq 28s linear infinite;font-family:'Bebas Neue';font-size:1.7rem;letter-spacing:.06em}
 .marquee .track span::after{content:'●';margin-left:2.5rem;font-size:.8rem;vertical-align:middle;opacity:.6}
 @keyframes mq{to{transform:translateX(-50%)}}
 
-section{position:relative}
+section{position:relative;max-width:100%}
 .sec{padding:7rem 0}
 .sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:3rem;flex-wrap:wrap}
 .sec-head h2{font-size:clamp(2.6rem,6vw,5rem);margin-top:.6rem}
@@ -306,7 +310,7 @@ footer a:hover{color:#fff}
   </div>
 </section>
 
-<div class="marquee" aria-hidden="true"><div class="track" id="mq"></div></div>
+<div class="mq-wrap"><div class="marquee" aria-hidden="true"><div class="track" id="mq"></div></div></div>
 
 <!-- BASS -->
 <section class="sec bass" id="som">
@@ -505,17 +509,17 @@ function onScroll(){
   nav.classList.toggle('solid',scrollY>hero.offsetHeight-innerHeight*1.1);
   hint.style.opacity=p>.03?0:1;
   // logo 3D emerge 0 -> .38
-  const a=ease(clamp(p/.38));
+  const a=ease(clamp(p/.3));
   const out=clamp((p-.86)/.14);
   const z=-1400*(1-a)+120*out;
   const rx=(1-a)*68+my*-10, ry=(1-a)*-38+mx*16+Math.sin(p*9)*4*a, rz=(1-a)*-12;
   const sc=.35+.65*a;
-  stage.style.opacity=clamp(a*1.6)*(1-out*.9);
-  const lift=clamp((p-.38)/.2)*(innerHeight*.12);
+  stage.style.opacity=clamp(a*1.6);
+  const lift=clamp((p-.3)/.2)*(innerHeight*.12);
   logo3d.style.transform=`translate3d(0,${-lift}px,${z}px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${sc*(1+pump*.04)})`;
   // copy
-  const c=clamp((p-.45)/.18);
-  copy.style.opacity=c*(1-clamp((p-.93)/.07));copy.style.transform=`translateY(${(1-c)*40}px)`;
+  const c=clamp((p-.35)/.2);
+  copy.style.opacity=c;copy.style.transform=`translateY(${(1-c)*40}px)`;
   copy.style.pointerEvents=c>.5?'auto':'none';
 }
 let pump=0;
