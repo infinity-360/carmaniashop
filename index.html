@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Car Mania Sarandi | Som Automotivo, Acessórios e Auto Elétrica</title>
+<meta name="description" content="Car Mania Distribuidora — a mais completa loja de som e acessórios automotivos de Sarandi-PR. Alto-falantes, rádios Pioneer, multimídias, alarmes, insulfilm, auto elétrica e muito mais. Atacado e varejo.">
+<meta property="og:title" content="Car Mania Sarandi — Som e Acessórios Automotivos">
+<meta property="og:description" content="A mais completa loja de som e acessórios de Sarandi-PR. Av. Ademar Bornia, 1557.">
+<meta property="og:image" content="og-carmania.jpg">
+<meta name="theme-color" content="#0a0a0b">
+<link rel="preload" href="racing-sans-one-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
+<style>
+@font-face{font-family:'Racing Sans One';src:url(racing-sans-one-latin-400-normal.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'Bebas Neue';src:url(bebas-neue-latin-400-normal.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'Barlow';src:url(barlow-latin-400-normal.woff2) format('woff2');font-weight:400 600;font-display:swap}
+@font-face{font-family:'Barlow';src:url(barlow-latin-700-normal.woff2) format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:'Barlow';src:url(barlow-latin-800-normal.woff2) format('woff2');font-weight:800 900;font-display:swap}
+:root{
+  --bg:#0a0a0b; --bg2:#111114; --card:#16161a; --line:#26262c;
+  --red:#e3121b; --red2:#ff2a2f; --red-d:#8f0a10;
+  --chrome:#d9dbe0; --muted:#9a9ca5; --white:#f5f5f7;
+  --pump:0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:'Barlow',system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.wrap{width:min(1200px,92vw);margin:0 auto}
+.h-display{font-family:'Bebas Neue',sans-serif;letter-spacing:.02em;line-height:.92}
+.kicker{font-weight:800;font-size:.8rem;letter-spacing:.28em;text-transform:uppercase;color:var(--red2)}
+.btn{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 1.5rem;border-radius:999px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;font-size:.9rem;transition:transform .2s,box-shadow .2s,background .2s}
+.btn-red{background:linear-gradient(180deg,var(--red2),var(--red));box-shadow:0 10px 30px -8px rgba(227,18,27,.7),inset 0 1px 0 rgba(255,255,255,.3)}
+.btn-red:hover{transform:translateY(-2px);box-shadow:0 16px 40px -8px rgba(227,18,27,.9)}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.25);background:rgba(255,255,255,.04);backdrop-filter:blur(6px)}
+.btn-ghost:hover{border-color:var(--white)}
+.btn svg{width:20px;height:20px}
+
+/* ===== NAV ===== */
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .3s,backdrop-filter .3s,padding .3s;padding:1.1rem 0}
+.nav.solid{background:rgba(10,10,11,.82);backdrop-filter:blur(14px);padding:.7rem 0;border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.nav-logo{width:150px;opacity:0;transform:translateY(-6px);transition:.35s}
+.nav.solid .nav-logo{opacity:1;transform:none}
+.nav-links{display:flex;gap:1.6rem;font-weight:700;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase}
+.nav-links a{opacity:.8;transition:.2s;position:relative}
+.nav-links a:hover{opacity:1;color:var(--red2)}
+.nav-cta{padding:.65rem 1.1rem;font-size:.78rem}
+.sound-toggle{display:flex;align-items:center;gap:.5rem;font-weight:800;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:.55rem .9rem;border-radius:999px;border:1.5px solid rgba(255,255,255,.2);background:rgba(0,0,0,.35)}
+.sound-toggle .bars{display:flex;gap:2px;align-items:flex-end;height:14px}
+.sound-toggle .bars i{width:3px;background:var(--red2);height:30%;border-radius:1px;transition:height .1s}
+.sound-toggle.on{border-color:var(--red)}
+@media(max-width:900px){.nav-links{display:none}.nav-logo{width:120px}}
+@media(max-width:560px){#soundLbl{display:none}.sound-toggle{padding:.6rem .7rem}.nav-cta{padding:.6rem .9rem}}
+
+/* ===== HERO SCROLL ===== */
+.hero{position:relative;height:460vh}
+.hero-stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;perspective:1100px}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%}
+#bgCanvas{filter:blur(28px) saturate(1.2) brightness(.45);transform:scale(1.15)}
+.hero-vignette{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,.75) 100%),linear-gradient(180deg,rgba(10,10,11,.55) 0%,transparent 22%,transparent 70%,var(--bg) 100%);pointer-events:none}
+.logo-stage{position:absolute;left:50%;top:44%;width:min(820px,90vw);transform-style:preserve-3d;transform:translate(-50%,-50%);pointer-events:none;will-change:transform}
+.logo3d{position:relative;transform-style:preserve-3d;will-change:transform}
+.logo3d svg{width:100%;height:auto;display:block}
+.logo3d .layer{position:absolute;inset:0}
+.logo3d .face{position:relative;filter:drop-shadow(0 0 22px rgba(227,18,27,.45))}
+.hero-copy{position:absolute;left:0;right:0;bottom:12vh;text-align:center;padding:0 5vw;opacity:0;transform:translateY(30px)}
+.hero-copy h1{font-size:clamp(2rem,5.4vw,4.4rem);text-shadow:0 4px 30px rgba(0,0,0,.8)}
+.hero-copy h1 span{color:var(--red2)}
+.hero-copy p{margin:.8rem auto 1.6rem;max-width:620px;color:#d4d5da;font-size:clamp(1rem,1.6vw,1.15rem)}
+.hero-copy .actions{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;pointer-events:auto}
+@media(max-aspect-ratio:4/5){.logo-stage{top:34%}}
+.scroll-hint{position:absolute;bottom:4vh;left:50%;transform:translateX(-50%);font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:#bbb;display:flex;flex-direction:column;align-items:center;gap:.6rem;transition:opacity .3s}
+.scroll-hint i{width:2px;height:40px;background:linear-gradient(var(--red2),transparent);animation:drip 1.6s infinite}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.hero-loader{position:absolute;inset:0;display:grid;place-items:center;background:var(--bg);z-index:5;transition:opacity .6s}
+.hero-loader .ring{width:64px;height:64px;border-radius:50%;border:3px solid #222;border-top-color:var(--red);animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.eq-hero{position:absolute;left:0;right:0;bottom:0;height:90px;display:flex;align-items:flex-end;gap:3px;padding:0 2vw;opacity:.35;pointer-events:none}
+.eq-hero i{flex:1;background:linear-gradient(to top,var(--red),transparent);height:6%;border-radius:2px 2px 0 0;transition:height .08s}
+
+/* ===== MARQUEE ===== */
+.marquee{background:var(--red);transform:rotate(-1.5deg);margin:-2rem -2vw 0;position:relative;z-index:3;overflow:hidden;box-shadow:0 20px 50px -20px rgba(227,18,27,.6)}
+.marquee .track{display:flex;gap:2.5rem;padding:.9rem 0;white-space:nowrap;animation:mq 28s linear infinite;font-family:'Bebas Neue';font-size:1.7rem;letter-spacing:.06em}
+.marquee .track span::after{content:'●';margin-left:2.5rem;font-size:.8rem;vertical-align:middle;opacity:.6}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+section{position:relative}
+.sec{padding:7rem 0}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:3rem;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(2.6rem,6vw,5rem);margin-top:.6rem}
+.sec-head p{max-width:440px;color:var(--muted);font-size:1.05rem}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ===== BASS / SPEAKERS ===== */
+.bass{background:radial-gradient(ellipse at 50% 60%,#1b0607 0%,var(--bg) 60%);overflow:hidden}
+.bass .wrap{display:grid;grid-template-columns:1fr 1.15fr;gap:4rem;align-items:center}
+.bass h2{font-size:clamp(3rem,7vw,6rem)}
+.bass h2 em{font-style:normal;color:var(--red2);display:block}
+.bass p{color:#c8c9cf;margin:1.2rem 0 2rem;font-size:1.1rem;max-width:480px}
+.spk-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;position:relative}
+.spk-box{background:linear-gradient(160deg,#1d1d22,#0d0d10);border:1px solid #2a2a31;border-radius:22px;padding:1.4rem;box-shadow:inset 0 2px 0 rgba(255,255,255,.04),0 30px 60px -30px #000;position:relative}
+.spk-box.big{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+.spk-box .lbl{position:absolute;bottom:.8rem;right:1rem;font-size:.68rem;letter-spacing:.2em;color:#666;font-weight:800;text-transform:uppercase}
+.speaker{width:100%;aspect-ratio:1;display:block}
+.speaker .cone{transform-origin:50% 50%;transform:scale(calc(1 + var(--pump)*.075))}
+.speaker .cap{transform-origin:50% 50%;transform:scale(calc(1 + var(--pump)*.14))}
+.speaker .glow{opacity:calc(.15 + var(--pump)*.85)}
+.shake{transform:translate(calc(var(--pump)*1.5px),calc(var(--pump)*-1px))}
+.bass-ctrl{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.vu{display:flex;gap:4px;align-items:flex-end;height:42px}
+.vu i{width:8px;border-radius:2px;background:#2a2a30;height:100%;position:relative;overflow:hidden}
+.vu i::after{content:'';position:absolute;left:0;right:0;bottom:0;height:var(--h,10%);background:linear-gradient(to top,#ff2a2f,#ff8a00 75%,#ffe000);transition:height .07s}
+.bass-note{font-size:.8rem;color:#777;margin-top:1rem}
+@media(max-width:900px){.bass .wrap{grid-template-columns:1fr}}
+
+/* ===== SERVICES ===== */
+.services{background:var(--bg)}
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.svc{position:relative;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:1.6rem 1.4rem 1.4rem;overflow:hidden;transition:transform .35s,border-color .35s;isolation:isolate}
+.svc::before{content:'';position:absolute;inset:auto -40% -60% -40%;height:120%;background:radial-gradient(circle,rgba(227,18,27,.35),transparent 60%);opacity:0;transition:.4s;z-index:-1}
+.svc:hover{transform:translateY(-6px);border-color:rgba(227,18,27,.6)}
+.svc:hover::before{opacity:1}
+.svc .ico{width:56px;height:56px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(160deg,#2a0b0d,#160607);border:1px solid #3a1215;margin-bottom:1.1rem}
+.svc .ico svg{width:30px;height:30px;stroke:var(--red2);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.svc h3{font-family:'Bebas Neue';font-size:1.7rem;letter-spacing:.03em;line-height:1}
+.svc p{color:var(--muted);font-size:.93rem;margin:.5rem 0 1rem;min-height:3.9em}
+.svc a{font-size:.75rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--red2);display:inline-flex;gap:.4rem;align-items:center}
+.svc a:hover{gap:.7rem}
+.svc .num{position:absolute;top:1rem;right:1.2rem;font-family:'Bebas Neue';font-size:1.1rem;color:#33333a}
+@media(max-width:1000px){.svc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.svc-grid{grid-template-columns:1fr}.svc p{min-height:0}}
+
+/* ===== SHOP ===== */
+.shop{background:linear-gradient(180deg,var(--bg),#0f0f12 20%,#0f0f12 80%,var(--bg))}
+.shop-brand{display:flex;align-items:center;gap:.9rem}
+.shop-brand .badge{font-family:'Racing Sans One';font-size:1rem;background:var(--red);padding:.25rem .7rem;border-radius:6px;transform:skew(-10deg);letter-spacing:.04em}
+.filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem;position:sticky;top:64px;z-index:10;padding:.8rem 0;background:linear-gradient(#0f0f12 70%,transparent)}
+.chip{padding:.6rem 1.05rem;border-radius:999px;border:1.5px solid var(--line);font-weight:700;font-size:.85rem;background:var(--card);transition:.2s}
+.chip:hover{border-color:#555}
+.chip.on{background:var(--red);border-color:var(--red)}
+.prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem}
+.prod{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s,border-color .3s}
+.prod:hover{transform:translateY(-5px);border-color:#3b3b44}
+.prod.hide{display:none}
+.prod .pic{aspect-ratio:1/0.82;background:radial-gradient(circle at 50% 45%,#2a2a31 0%,#141418 70%);display:grid;place-items:center;position:relative;overflow:hidden}
+.prod .pic svg{width:78%;height:78%;transition:transform .5s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 18px 18px rgba(0,0,0,.6))}
+.prod:hover .pic svg{transform:scale(1.07) rotate(-2deg)}
+.prod .tag{position:absolute;top:.8rem;left:.8rem;font-size:.66rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;background:rgba(0,0,0,.55);border:1px solid #333;padding:.3rem .55rem;border-radius:6px}
+.prod .tag.hot{background:var(--red);border-color:var(--red)}
+.prod .body{padding:1.1rem 1.1rem 1.2rem;display:flex;flex-direction:column;gap:.4rem;flex:1}
+.prod h3{font-size:1.05rem;font-weight:800;line-height:1.2}
+.prod .desc{color:var(--muted);font-size:.86rem;flex:1}
+.prod .row{display:flex;gap:.5rem;margin-top:.6rem}
+.prod .row a,.prod .row button{flex:1;text-align:center;padding:.7rem .4rem;border-radius:10px;font-size:.74rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.prod .ask{background:linear-gradient(180deg,var(--red2),var(--red))}
+.prod .add{border:1.5px solid #3a3a42}
+.prod .add.added{border-color:#1fb85a;color:#38d97a}
+.shop-note{color:#666;font-size:.8rem;margin-top:1.6rem;text-align:center}
+@media(max-width:1000px){.prod-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:760px){.prod-grid{grid-template-columns:repeat(2,1fr)}.prod .row{flex-direction:column}.filters{top:56px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-right:-4vw;padding-right:4vw}.filters::-webkit-scrollbar{display:none}.chip{flex:none}}
+
+/* cart */
+.cart-fab{position:fixed;right:1.2rem;bottom:6.2rem;z-index:60;background:#fff;color:#111;border-radius:999px;padding:.75rem 1.1rem;font-weight:800;font-size:.8rem;display:flex;align-items:center;gap:.5rem;box-shadow:0 12px 30px rgba(0,0,0,.5);transform:translateY(150%) ;opacity:0;transition:.35s}
+.cart-fab.show{transform:none;opacity:1}
+.cart-fab b{background:var(--red);color:#fff;border-radius:999px;min-width:22px;height:22px;display:grid;place-items:center;font-size:.75rem}
+.drawer{position:fixed;inset:0;z-index:80;display:none}
+.drawer.open{display:block}
+.drawer .shade{position:absolute;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px)}
+.drawer .panel{position:absolute;right:0;top:0;bottom:0;width:min(420px,100%);background:#121215;border-left:1px solid var(--line);padding:1.6rem;display:flex;flex-direction:column;gap:1rem;animation:slide .3s}
+@keyframes slide{from{transform:translateX(100%)}}
+.drawer h3{font-family:'Bebas Neue';font-size:2rem}
+.drawer ul{list-style:none;flex:1;overflow:auto;display:flex;flex-direction:column;gap:.6rem}
+.drawer li{display:flex;align-items:center;justify-content:space-between;gap:.8rem;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:.75rem .9rem;font-weight:600;font-size:.92rem}
+.drawer li .q{display:flex;align-items:center;gap:.5rem}
+.drawer li .q button{width:26px;height:26px;border-radius:8px;border:1px solid #333;font-weight:800}
+.drawer .x{position:absolute;top:1.2rem;right:1.2rem;font-size:1.6rem;opacity:.7}
+
+/* ===== TOUR ===== */
+.tour .frame{position:relative;border-radius:24px;overflow:hidden;border:1px solid var(--line);height:min(70vh,620px);background:#111;box-shadow:0 40px 80px -40px rgba(227,18,27,.35)}
+#pano{width:100%;height:100%}
+.tour .badge360{position:absolute;top:1rem;left:1rem;z-index:3;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);border:1px solid #333;border-radius:999px;padding:.5rem .9rem;font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;display:flex;gap:.5rem;align-items:center;pointer-events:none}
+.tour .badge360 i{width:8px;height:8px;border-radius:50%;background:var(--red2);box-shadow:0 0 10px var(--red2);animation:blink 1.4s infinite}
+@keyframes blink{50%{opacity:.3}}
+.tour .soon{position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);z-index:3;background:rgba(0,0,0,.65);backdrop-filter:blur(8px);border:1px solid #333;border-radius:12px;padding:.6rem 1rem;font-size:.82rem;color:#ccc;text-align:center;pointer-events:none;white-space:nowrap}
+.pnlm-load-box{background:#111!important}
+
+/* ===== ABOUT / INFO ===== */
+.info .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:1.4rem}
+.map{border-radius:24px;overflow:hidden;border:1px solid var(--line);min-height:440px;filter:grayscale(.2) contrast(1.05)}
+.map iframe{width:100%;height:100%;min-height:440px;border:0;display:block}
+.contact-card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:2rem;display:flex;flex-direction:column;gap:1.3rem}
+.contact-card .item{display:flex;gap:1rem;align-items:flex-start}
+.contact-card .item .i{flex:none;width:46px;height:46px;border-radius:12px;background:#1f0809;border:1px solid #3a1215;display:grid;place-items:center}
+.contact-card .item .i svg{width:22px;height:22px;stroke:var(--red2);fill:none;stroke-width:1.8}
+.contact-card small{display:block;color:var(--muted);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.contact-card strong{font-size:1.1rem}
+.socials{display:flex;gap:.6rem;margin-top:.4rem}
+.socials a{width:46px;height:46px;border-radius:12px;border:1px solid var(--line);display:grid;place-items:center;transition:.2s}
+.socials a:hover{background:var(--red);border-color:var(--red)}
+.socials svg{width:22px;height:22px;fill:#fff}
+@media(max-width:900px){.info .grid{grid-template-columns:1fr}}
+
+/* ===== CTA ===== */
+.cta-band{position:relative;overflow:hidden;border-radius:28px;padding:4rem 2rem;text-align:center;background:linear-gradient(135deg,#a30a10,#e3121b 50%,#7a060b);margin:0 auto 6rem}
+.cta-band::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(60deg,rgba(0,0,0,.08) 0 2px,transparent 2px 22px)}
+.cta-band h2{font-size:clamp(2.4rem,6vw,4.6rem);position:relative}
+.cta-band p{position:relative;margin:.6rem 0 1.8rem;font-size:1.1rem;opacity:.9}
+.cta-band .btn{background:#0a0a0b;position:relative}
+
+footer{border-top:1px solid var(--line);padding:2.5rem 0 7rem;color:#777;font-size:.85rem}
+footer .wrap{display:flex;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;align-items:center}
+footer .f-logo{width:140px}
+footer a:hover{color:#fff}
+
+/* WhatsApp floating */
+.wa-fab{position:fixed;right:1.2rem;bottom:1.2rem;z-index:70;width:62px;height:62px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 10px 30px rgba(37,211,102,.45)}
+.wa-fab::before{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid #25d366;animation:ping 2s infinite}
+@keyframes ping{to{transform:scale(1.6);opacity:0}}
+.wa-fab svg{width:32px;height:32px;fill:#fff}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- Logo SVG template (reused) -->
+<template id="logoTpl">
+<svg viewBox="0 0 900 250" xmlns="http://www.w3.org/2000/svg" aria-label="Car Mania">
+  <defs>
+    <linearGradient id="gRed" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff5a5f"/><stop offset=".45" stop-color="#e3121b"/><stop offset="1" stop-color="#7d0509"/>
+    </linearGradient>
+    <linearGradient id="gChrome" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5a5c63"/><stop offset=".48" stop-color="#1a1b1f"/><stop offset=".52" stop-color="#050506"/><stop offset="1" stop-color="#2b2c31"/>
+    </linearGradient>
+    <linearGradient id="gSilver" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/><stop offset=".5" stop-color="#c9cbd1"/><stop offset="1" stop-color="#8b8d94"/>
+    </linearGradient>
+    <linearGradient id="gSwoosh" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#e3121b" stop-opacity="0"/><stop offset=".25" stop-color="#e3121b"/><stop offset="1" stop-color="#ff3a40"/>
+    </linearGradient>
+  </defs>
+  <!-- rings -->
+  <g transform="translate(108 128) rotate(-18)" fill="none">
+    <ellipse rx="98" ry="84" stroke="url(#gRed)" stroke-width="13"/>
+    <ellipse rx="98" ry="84" stroke="url(#gSilver)" stroke-width="2.5" opacity=".9"/>
+    <ellipse cx="10" rx="70" ry="58" stroke="url(#gRed)" stroke-width="11"/>
+    <ellipse cx="10" rx="70" ry="58" stroke="url(#gSilver)" stroke-width="2" opacity=".8"/>
+    <ellipse cx="18" rx="44" ry="35" stroke="url(#gSilver)" stroke-width="8"/>
+  </g>
+  <!-- swoosh -->
+  <path d="M300 205 C 520 220, 760 200, 868 150 C 800 205, 560 238, 300 214 Z" fill="url(#gSwoosh)"/>
+  <!-- CAR -->
+  <text x="172" y="168" font-family="'Racing Sans One',Impact,sans-serif" font-size="128" fill="url(#gRed)" stroke="url(#gSilver)" stroke-width="4" paint-order="stroke" transform="skewX(-10)">Car</text>
+  <!-- MANIA -->
+  <text x="440" y="168" font-family="'Racing Sans One',Impact,sans-serif" font-size="128" fill="url(#gChrome)" stroke="url(#gSilver)" stroke-width="5" paint-order="stroke" transform="skewX(-10)">Mania</text>
+  <text x="560" y="236" font-family="Barlow,Arial,sans-serif" font-weight="800" font-size="22" letter-spacing="9" fill="#d9dbe0" opacity=".85">DISTRIBUIDORA</text>
+</svg>
+</template>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#topo" class="nav-logo" id="navLogo" aria-label="Car Mania - início"></a>
+    <nav class="nav-links">
+      <a href="#servicos">Serviços</a>
+      <a href="#shop">Car Mania Shop</a>
+      <a href="#tour">Tour 360°</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <div style="display:flex;gap:.6rem;align-items:center">
+      <button class="sound-toggle" id="soundBtn" aria-pressed="false"><span class="bars"><i></i><i></i><i></i><i></i></span><span id="soundLbl">Ligar o som</span></button>
+      <a class="btn btn-red nav-cta" href="#" data-wa="Olá, Car Mania! Vim pelo site e gostaria de um orçamento.">WhatsApp</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="topo">
+  <div class="hero-stick">
+    <canvas id="bgCanvas"></canvas>
+    <canvas id="fgCanvas"></canvas>
+    <div class="hero-vignette"></div>
+    <div class="eq-hero" id="eqHero"></div>
+    <div class="logo-stage" id="logoStage"><div class="logo3d" id="logo3d"></div></div>
+    <div class="hero-copy" id="heroCopy">
+      <div class="kicker" style="margin-bottom:.8rem">Sarandi · PR · Atacado e varejo</div>
+      <h1 class="h-display">A mais completa loja de <span>som e acessórios</span> de Sarandi</h1>
+      <p>Som automotivo, multimídias, alarmes, insulfilm, auto elétrica e instalação profissional. Aberto de segunda a sábado.</p>
+      <div class="actions">
+        <a class="btn btn-red" href="#" data-wa="Olá, Car Mania! Vim pelo site e gostaria de um orçamento."><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.4.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.6 2.1 1.1 1 2 1.3 2.3 1.4.3.2.4.1.6-.1l.8-1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.2 1.4Z"/></svg>Chamar no WhatsApp</a>
+        <a class="btn btn-ghost" href="#shop">Ver a Car Mania Shop</a>
+      </div>
+    </div>
+    <div class="scroll-hint" id="scrollHint">Role para ligar o som<i></i></div>
+    <div class="hero-loader" id="loader"><div class="ring"></div></div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="track" id="mq"></div></div>
+
+<!-- BASS -->
+<section class="sec bass" id="som">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="kicker">Som automotivo</div>
+      <h2 class="h-display">Sinta o grave<em>bater no peito</em></h2>
+      <p>Do projeto à instalação: alto-falantes, subwoofers, módulos, caixas personalizadas e multimídias. Ligue o som e sinta como fica o seu carro com a Car Mania.</p>
+      <div class="bass-ctrl">
+        <button class="btn btn-red" id="bassBtn"><svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg><span>Tocar o grave</span></button>
+        <div class="vu" id="vu"></div>
+      </div>
+      <div class="bass-note">Batida sintetizada no seu navegador — use fone ou caixa de som para sentir o sub.</div>
+    </div>
+    <div class="spk-grid reveal" id="spkGrid"></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="sec services" id="servicos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="kicker">O que fazemos</div><h2 class="h-display">Serviços Car Mania</h2></div>
+      <p>Tudo para o seu carro em um só lugar, com equipe especializada na Av. Ademar Bornia. Toque em um serviço e peça seu orçamento.</p>
+    </div>
+    <div class="svc-grid" id="svcGrid"></div>
+  </div>
+</section>
+
+<!-- SHOP -->
+<section class="sec shop" id="shop">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="shop-brand"><span class="kicker">Loja</span><span class="badge">SHOP</span></div>
+        <h2 class="h-display">Car Mania Shop</h2>
+      </div>
+      <p>Monte sua lista de orçamento com os produtos que quer e envie direto pelo WhatsApp. Preços especiais para atacado e varejo.</p>
+    </div>
+    <div class="filters" id="filters"></div>
+    <div class="prod-grid" id="prodGrid"></div>
+    <p class="shop-note">Imagens ilustrativas. Modelos, marcas e estoque sujeitos à disponibilidade — consulte pelo WhatsApp.</p>
+  </div>
+</section>
+
+<!-- TOUR -->
+<section class="sec tour" id="tour">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="kicker">Visite sem sair de casa</div><h2 class="h-display">Tour Virtual 360°</h2></div>
+      <p>Arraste para olhar em volta e conheça a loja da Car Mania na Av. Ademar Bornia, em Sarandi.</p>
+    </div>
+    <div class="frame reveal" id="tourFrame">
+      <div class="badge360"><i></i>Tour 360°</div>
+      <!-- Para usar o tour completo, substitua a div #pano por um <iframe src="LINK_DO_TOUR" style="width:100%;height:100%;border:0" allowfullscreen></iframe> -->
+      <div id="pano"></div>
+      <div class="soon">Tour completo pelo interior da loja em breve</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec info" id="contato">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="kicker">Venha nos visitar</div><h2 class="h-display">Onde estamos</h2></div>
+      <p>Loja aberta de segunda a sábado. Estacionamento em frente e fácil acesso pela Av. Ademar Bornia.</p>
+    </div>
+    <div class="grid">
+      <div class="map reveal">
+        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa Car Mania Sarandi" src="https://www.google.com/maps?q=Av.+Ademar+Bornia,+1557,+Sarandi+-+PR&output=embed"></iframe>
+      </div>
+      <div class="contact-card reveal">
+        <div class="item"><div class="i"><svg viewBox="0 0 24 24"><path d="M12 22s7-6.1 7-12a7 7 0 0 0-14 0c0 5.9 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg></div><div><small>Endereço</small><strong>Av. Ademar Bornia, 1557</strong><div style="color:var(--muted)">Sarandi - PR</div></div></div>
+        <div class="item"><div class="i"><svg viewBox="0 0 24 24"><path d="M20 15.5v3a2 2 0 0 1-2.2 2A18 18 0 0 1 3.5 6.2 2 2 0 0 1 5.5 4h3l1.5 4-2 1.5a12 12 0 0 0 6.5 6.5L16 14z"/></svg></div><div><small>WhatsApp</small><strong><a href="#" data-wa="Olá, Car Mania! Vim pelo site.">(44) 99913-2888</a></strong></div></div>
+        <div class="item"><div class="i"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 6h6M9 18h6"/></svg></div><div><small>Telefone fixo</small><strong><a href="tel:+554421228028">(44) 2122-8028</a></strong></div></div>
+        <div class="item"><div class="i"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div><small>Funcionamento</small><strong>Segunda a sábado</strong></div></div>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+          <a class="btn btn-red" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=Av.+Ademar+Bornia,+1557,+Sarandi+-+PR">Traçar rota</a>
+          <a class="btn btn-ghost" href="#" data-wa="Olá, Car Mania! Vim pelo site.">Falar agora</a>
+        </div>
+        <div>
+          <small>Redes sociais</small>
+          <div class="socials">
+            <a href="https://www.instagram.com/carmania_sarandi/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4ZM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4ZM21.9 7.1c-.1-1.6-.4-3-1.6-4.2S17.6 1.3 16 1.2c-1.6-.1-6.5-.1-8.1 0-1.6.1-3 .4-4.2 1.6S2.1 5.5 2 7.1c-.1 1.6-.1 6.5 0 8.1.1 1.6.4 3 1.6 4.2s2.6 1.5 4.2 1.6c1.6.1 6.5.1 8.1 0 1.6-.1 3-.4 4.2-1.6s1.5-2.6 1.6-4.2c.2-1.6.2-6.5.2-8.1Zm-2.1 9.8a3.3 3.3 0 0 1-1.9 1.9c-1.3.5-4.3.4-5.7.4s-4.4.1-5.7-.4a3.3 3.3 0 0 1-1.9-1.9c-.5-1.3-.4-4.3-.4-5.7s-.1-4.4.4-5.7A3.3 3.3 0 0 1 6.5 3.6C7.8 3.1 10.8 3.2 12 3.2s4.4-.1 5.7.4a3.3 3.3 0 0 1 1.9 1.9c.5 1.3.4 4.3.4 5.7s.3 4.4-.2 5.7Z"/></svg></a>
+            <a href="#" data-wa="Olá, Car Mania! Vim pelo site." aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.4.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.6 2.1 1.1 1 2 1.3 2.3 1.4.3.2.4.1.6-.1l.8-1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.2 1.4Z"/></svg></a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Car+Mania+Av.+Ademar+Bornia+1557+Sarandi+PR" target="_blank" rel="noopener" aria-label="Google"><svg viewBox="0 0 24 24"><path d="M21.6 10.2H12v3.9h5.5c-.5 2.5-2.6 4-5.5 4a6.1 6.1 0 0 1 0-12.2c1.5 0 2.9.6 3.9 1.5l2.9-2.9A10 10 0 1 0 12 22c5 0 9.6-3.6 9.6-10 0-.6 0-1.2-.1-1.8Z"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="cta-band reveal">
+    <h2 class="h-display">Seu carro merece o melhor som</h2>
+    <p>Fale com a Car Mania e receba seu orçamento agora mesmo.</p>
+    <a class="btn" href="#" data-wa="Olá, Car Mania! Quero um orçamento.">Pedir orçamento no WhatsApp</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="f-logo" id="footLogo"></div>
+    <div>© <span id="yr"></span> Car Mania Distribuidora · Av. Ademar Bornia, 1557 · Sarandi - PR</div>
+    <div>Site e tour 360° por <a href="https://infinity-360.github.io/360view/" target="_blank" rel="noopener" style="color:#ccc;font-weight:700">Infinity View 360</a></div>
+  </div>
+</footer>
+
+<button class="cart-fab" id="cartFab">Lista de orçamento <b id="cartCount">0</b></button>
+<div class="drawer" id="drawer">
+  <div class="shade" data-close></div>
+  <div class="panel">
+    <button class="x" data-close aria-label="Fechar">×</button>
+    <h3>Lista de orçamento</h3>
+    <ul id="cartList"></ul>
+    <a class="btn btn-red" id="cartSend" href="#" style="justify-content:center">Enviar pelo WhatsApp</a>
+  </div>
+</div>
+
+<a class="wa-fab" href="#" data-wa="Olá, Car Mania! Vim pelo site e gostaria de um orçamento." aria-label="WhatsApp Car Mania"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.4.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.6 2.1 1.1 1 2 1.3 2.3 1.4.3.2.4.1.6-.1l.8-1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.2 1.4Z"/></svg></a>
+
+<script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js" defer></script>
+<script>
+(()=>{
+const WA='5544999132888';
+const waLink=m=>`https://wa.me/${WA}?text=${encodeURIComponent(m)}`;
+const $=s=>document.querySelector(s);
+document.getElementById('yr').textContent=new Date().getFullYear();
+function bindWA(root=document){root.querySelectorAll('[data-wa]').forEach(a=>{a.href=waLink(a.dataset.wa);a.target='_blank';a.rel='noopener'});}
+
+/* ---------- LOGOS ---------- */
+const tpl=$('#logoTpl').innerHTML;
+let uid=0;
+function logoSVG(){ // unique gradient ids per instance
+  const n=++uid;return tpl.replace(/id="(g\w+)"/g,`id="$1${n}"`).replace(/url\(#(g\w+)\)/g,`url(#$1${n})`);
+}
+$('#navLogo').innerHTML=logoSVG();$('#footLogo').innerHTML=logoSVG();
+const logo3d=$('#logo3d');
+const DEPTH=14;
+for(let i=DEPTH;i>=1;i--){
+  const d=document.createElement('div');d.className='layer';d.innerHTML=logoSVG();
+  const k=i/DEPTH;
+  d.style.transform=`translateZ(${-i*2.2}px)`;
+  d.style.filter=`brightness(${.18+.25*(1-k)}) saturate(.6)`;
+  logo3d.appendChild(d);
+}
+const face=document.createElement('div');face.className='face';face.innerHTML=logoSVG();logo3d.appendChild(face);
+
+/* ---------- MARQUEE ---------- */
+const mqItems=['Som automotivo','Alarmes','Travas','Vidros elétricos','Insulfilm','Ar-condicionado','Auto elétrica','Lâmpadas e LEDs','Multimídias','Rádios Pioneer','Capotas marítimas','Caixas personalizadas','Chaves canivete'];
+$('#mq').innerHTML=[...mqItems,...mqItems].map(t=>`<span>${t}</span>`).join('');
+
+/* ---------- HERO FRAMES ---------- */
+const N=72,frames=new Array(N);let loaded=0;
+const fg=$('#fgCanvas'),bg=$('#bgCanvas'),fx=fg.getContext('2d'),bx=bg.getContext('2d');
+let cur=-1,target=0;
+function size(){const dpr=Math.min(devicePixelRatio||1,2);[fg,bg].forEach(c=>{c.width=innerWidth*dpr;c.height=innerHeight*dpr});cur=-1;draw();}
+function draw(){
+  const i=Math.round(target);const img=frames[i]||frames.find(Boolean);if(!img||!img.complete||!img.naturalWidth)return;
+  if(i===cur)return;cur=i;
+  const W=fg.width,H=fg.height,iw=img.naturalWidth,ih=img.naturalHeight;
+  // background blurred cover
+  let s=Math.max(W/iw,H/ih);bx.drawImage(img,(W-iw*s)/2,(H-ih*s)/2,iw*s,ih*s);
+  fx.clearRect(0,0,W,H);
+  const portrait=W/H<0.8;
+  if(portrait){s=Math.max(W/iw,H/ih);fx.drawImage(img,(W-iw*s)/2,(H-ih*s)/2,iw*s,ih*s);}
+  else{
+    s=H/ih;const dw=iw*s,x=(W-dw)/2;
+    fx.save();fx.drawImage(img,x,0,dw,H);
+    // soft edges
+    const g1=fx.createLinearGradient(x,0,x+dw*.25,0);g1.addColorStop(0,'rgba(10,10,11,1)');g1.addColorStop(1,'rgba(10,10,11,0)');
+    fx.fillStyle=g1;fx.fillRect(x-1,0,dw*.25+1,H);
+    const g2=fx.createLinearGradient(x+dw,0,x+dw*.75,0);g2.addColorStop(0,'rgba(10,10,11,1)');g2.addColorStop(1,'rgba(10,10,11,0)');
+    fx.fillStyle=g2;fx.fillRect(x+dw*.75,0,dw*.25+1,H);
+    fx.globalCompositeOperation='destination-out';
+    const g3=fx.createLinearGradient(x,0,x+dw*.22,0);g3.addColorStop(0,'rgba(0,0,0,1)');g3.addColorStop(1,'rgba(0,0,0,0)');fx.fillStyle=g3;fx.fillRect(x-1,0,dw*.22+1,H);
+    const g4=fx.createLinearGradient(x+dw,0,x+dw*.78,0);g4.addColorStop(0,'rgba(0,0,0,1)');g4.addColorStop(1,'rgba(0,0,0,0)');fx.fillStyle=g4;fx.fillRect(x+dw*.78,0,dw*.22+1,H);
+    fx.restore();
+  }
+}
+for(let i=0;i<N;i++){const im=new Image();im.decoding='async';im.src=`f${String(i).padStart(2,'0')}.webp`;im.onload=()=>{loaded++;if(i===0){draw();}const L=$('#loader');if(loaded>=Math.min(12,N)&&L&&!L.dataset.gone){L.dataset.gone=1;L.style.opacity=0;setTimeout(()=>L.remove(),700)}};frames[i]=im;}
+addEventListener('resize',size);size();
+
+/* ---------- SCROLL ---------- */
+const hero=$('.hero'),stage=$('#logoStage'),copy=$('#heroCopy'),hint=$('#scrollHint'),nav=$('#nav');
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+const ease=t=>1-Math.pow(1-t,3);
+let mx=0,my=0,lastY=scrollY,vel=0;
+addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5},{passive:true});
+function onScroll(){
+  const r=hero.getBoundingClientRect();const total=hero.offsetHeight-innerHeight;
+  const p=clamp(-r.top/total);
+  target=p*(N-1);draw();
+  nav.classList.toggle('solid',scrollY>hero.offsetHeight-innerHeight*1.1);
+  hint.style.opacity=p>.03?0:1;
+  // logo 3D emerge 0 -> .38
+  const a=ease(clamp(p/.38));
+  const out=clamp((p-.86)/.14);
+  const z=-1400*(1-a)+120*out;
+  const rx=(1-a)*68+my*-10, ry=(1-a)*-38+mx*16+Math.sin(p*9)*4*a, rz=(1-a)*-12;
+  const sc=.35+.65*a;
+  stage.style.opacity=clamp(a*1.6)*(1-out*.9);
+  const lift=clamp((p-.38)/.2)*(innerHeight*.12);
+  logo3d.style.transform=`translate3d(0,${-lift}px,${z}px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${sc*(1+pump*.04)})`;
+  // copy
+  const c=clamp((p-.45)/.18);
+  copy.style.opacity=c*(1-clamp((p-.93)/.07));copy.style.transform=`translateY(${(1-c)*40}px)`;
+  copy.style.pointerEvents=c>.5?'auto':'none';
+}
+let pump=0;
+function loop(){
+  const y=scrollY;vel=vel*.85+Math.abs(y-lastY)*.15;lastY=y;
+  let lvl=0;
+  if(analyser){analyser.getByteFrequencyData(fdata);let s=0;for(let i=1;i<8;i++)s+=fdata[i];lvl=s/7/255;lvl=Math.pow(lvl,2.2)*1.4;}
+  const idle=(Math.sin(performance.now()/260)+1)*.04;
+  const scrollPump=Math.min(vel/60,1)*.7;
+  pump=Math.max(lvl,scrollPump,idle);
+  document.documentElement.style.setProperty('--pump',pump.toFixed(3));
+  onScroll();updateEQ(lvl);
+  requestAnimationFrame(loop);
+}
+
+/* ---------- SPEAKERS ---------- */
+function speakerSVG(n,label){
+  return `<svg class="speaker" viewBox="0 0 200 200"><defs>
+  <radialGradient id="cone${n}" cx="50%" cy="45%" r="55%"><stop offset="0" stop-color="#3a3a42"/><stop offset=".7" stop-color="#121216"/><stop offset="1" stop-color="#050506"/></radialGradient>
+  <radialGradient id="cap${n}" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#9aa0aa"/><stop offset=".5" stop-color="#3c3f46"/><stop offset="1" stop-color="#111"/></radialGradient>
+  <radialGradient id="glow${n}"><stop offset="0" stop-color="#ff2a2f" stop-opacity=".9"/><stop offset="1" stop-color="#ff2a2f" stop-opacity="0"/></radialGradient>
+  <linearGradient id="rim${n}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e9eaee"/><stop offset=".5" stop-color="#6d7079"/><stop offset="1" stop-color="#d3d5da"/></linearGradient></defs>
+  <circle class="glow" cx="100" cy="100" r="98" fill="url(#glow${n})"/>
+  <circle cx="100" cy="100" r="88" fill="#0b0b0d" stroke="url(#rim${n})" stroke-width="5"/>
+  ${[0,60,120,180,240,300].map(a=>{const x=100+80*Math.cos(a*Math.PI/180),y=100+80*Math.sin(a*Math.PI/180);return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" fill="#888"/>`}).join('')}
+  <circle cx="100" cy="100" r="72" fill="#1c1c21" stroke="#e3121b" stroke-width="1.5"/>
+  <g class="cone"><circle cx="100" cy="100" r="66" fill="url(#cone${n})"/>
+  ${[56,46,36].map(r=>`<circle cx="100" cy="100" r="${r}" fill="none" stroke="#000" stroke-opacity=".35"/>`).join('')}
+  <g class="cap"><circle cx="100" cy="100" r="24" fill="url(#cap${n})"/><circle cx="92" cy="92" r="7" fill="#fff" opacity=".18"/></g></g>
+  </svg>${label?`<span class="lbl">${label}</span>`:''}`;
+}
+$('#spkGrid').innerHTML=`<div class="spk-box big shake">${speakerSVG(1)}${speakerSVG(2)}<span class="lbl">Subwoofer 12" · Caixa dupla</span></div>
+<div class="spk-box shake">${speakerSVG(3,'6x9"')}</div><div class="spk-box shake">${speakerSVG(4,'Médio 8"')}</div>`;
+
+/* ---------- AUDIO (synth bass beat) ---------- */
+let actx=null,analyser=null,fdata=null,master=null,playing=false,timer=null,nextT=0,step=0;
+const BPM=96,SPB=60/BPM/4; // 16th note
+const bassLine=[41.2,0,0,41.2, 0,0,49,0, 36.7,0,0,36.7, 0,43.65,0,0]; // E1, G1, D1, F1
+function initAudio(){
+  actx=new (window.AudioContext||window.webkitAudioContext)();
+  master=actx.createGain();master.gain.value=.85;
+  const comp=actx.createDynamicsCompressor();comp.threshold.value=-14;comp.ratio.value=4;
+  analyser=actx.createAnalyser();analyser.fftSize=256;analyser.smoothingTimeConstant=.6;fdata=new Uint8Array(analyser.frequencyBinCount);
+  master.connect(comp);comp.connect(analyser);analyser.connect(actx.destination);
+}
+function kick(t){const o=actx.createOscillator(),g=actx.createGain();o.type='sine';o.frequency.setValueAtTime(150,t);o.frequency.exponentialRampToValueAtTime(42,t+.12);g.gain.setValueAtTime(1.1,t);g.gain.exponentialRampToValueAtTime(.001,t+.45);o.connect(g);g.connect(master);o.start(t);o.stop(t+.5);}
+function sub(t,f,len){const o=actx.createOscillator(),o2=actx.createOscillator(),g=actx.createGain(),lp=actx.createBiquadFilter();lp.type='lowpass';lp.frequency.value=180;o.type='sawtooth';o2.type='sine';o.frequency.value=f;o2.frequency.value=f/1;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.55,t+.01);g.gain.exponentialRampToValueAtTime(.001,t+len);o.connect(lp);o2.connect(lp);lp.connect(g);g.connect(master);o.start(t);o2.start(t);o.stop(t+len+.05);o2.stop(t+len+.05);}
+let noiseBuf=null;
+function hat(t,open){if(!noiseBuf){noiseBuf=actx.createBuffer(1,actx.sampleRate*.3,actx.sampleRate);const d=noiseBuf.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;}
+  const s=actx.createBufferSource(),hp=actx.createBiquadFilter(),g=actx.createGain();s.buffer=noiseBuf;hp.type='highpass';hp.frequency.value=7000;g.gain.setValueAtTime(open?.12:.07,t);g.gain.exponentialRampToValueAtTime(.001,t+(open?.2:.05));s.connect(hp);hp.connect(g);g.connect(master);s.start(t);s.stop(t+.3);}
+function clap(t){const s=actx.createBufferSource(),bp=actx.createBiquadFilter(),g=actx.createGain();s.buffer=noiseBuf;bp.type='bandpass';bp.frequency.value=1500;g.gain.setValueAtTime(.35,t);g.gain.exponentialRampToValueAtTime(.001,t+.18);s.connect(bp);bp.connect(g);g.connect(master);s.start(t);s.stop(t+.25);}
+function schedule(){
+  while(nextT<actx.currentTime+.12){
+    const s=step%16;
+    if(s===0||s===6||s===10)kick(nextT);
+    if(bassLine[s])sub(nextT,bassLine[s],SPB*2.6);
+    hat(nextT,s%4===2);
+    if(s===4||s===12)clap(nextT);
+    nextT+=SPB;step++;
+  }
+}
+function setPlaying(on){
+  if(on&&!actx)initAudio();
+  if(actx&&actx.state==='suspended')actx.resume();
+  playing=on;
+  if(on){nextT=actx.currentTime+.05;step=0;timer=setInterval(schedule,25);}else{clearInterval(timer);}
+  $('#soundBtn').classList.toggle('on',on);$('#soundBtn').setAttribute('aria-pressed',on);
+  $('#soundLbl').textContent=on?'Som ligado':'Ligar o som';
+  $('#bassBtn span').textContent=on?'Parar o grave':'Tocar o grave';
+  $('#bassBtn svg').innerHTML=on?'<path d="M7 5h4v14H7zM13 5h4v14h-4z"/>':'<path d="M8 5v14l11-7z"/>';
+}
+$('#soundBtn').onclick=()=>setPlaying(!playing);
+$('#bassBtn').onclick=()=>setPlaying(!playing);
+
+/* EQ bars */
+const eqHero=$('#eqHero');for(let i=0;i<48;i++)eqHero.appendChild(document.createElement('i'));
+const vu=$('#vu');for(let i=0;i<12;i++)vu.appendChild(document.createElement('i'));
+const sbBars=[...document.querySelectorAll('.sound-toggle .bars i')];
+function updateEQ(lvl){
+  const bars=eqHero.children,vb=vu.children;
+  for(let i=0;i<bars.length;i++){let v=fdata&&playing?fdata[Math.floor(i*1.6)+1]/255:(.05+Math.sin(performance.now()/400+i*.5)*.03+pump*.3);bars[i].style.height=(v*100).toFixed(1)+'%';}
+  for(let i=0;i<vb.length;i++){const v=fdata&&playing?fdata[i*3+1]/255:pump*.5;vb[i].style.setProperty('--h',(v*100).toFixed(0)+'%');}
+  sbBars.forEach((b,i)=>b.style.height=(playing&&fdata?20+fdata[i*4+1]/255*80:30)+'%');
+}
+
+/* ---------- SERVICES ---------- */
+const I={
+ alarme:'<path d="M12 3a6 6 0 0 0-6 6v4l-2 3h16l-2-3V9a6 6 0 0 0-6-6Z"/><path d="M10 19a2 2 0 0 0 4 0"/><path d="M3 7a9 9 0 0 1 2-3M21 7a9 9 0 0 0-2-3"/>',
+ trava:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/><circle cx="12" cy="16" r="1.5"/>',
+ vidro:'<path d="M4 20V9l6-5h10v16Z"/><path d="M8 16l8-8M12 17l5-5"/>',
+ som:'<rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="14" r="4"/><circle cx="12" cy="14" r="1"/><circle cx="12" cy="7" r="1.5"/>',
+ insulfilm:'<path d="M3 18 7 6h13l-3 12Z"/><path d="M10 6 7 18M14 6l-3 12" opacity=".6"/><path d="M5 12h14"/>',
+ ar:'<path d="M12 2v20M4.9 4.9l14.2 14.2M2 12h20M4.9 19.1 19.1 4.9"/><path d="m9 4 3 2 3-2M9 20l3-2 3 2M4 9l2 3-2 3M20 9l-2 3 2 3"/>',
+ eletrica:'<rect x="3" y="8" width="18" height="12" rx="2"/><path d="M7 8V5h3v3M14 8V5h3v3"/><path d="m11 11-2 4h4l-2 4"/>',
+ lampada:'<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.5 1 2.5h6c0-1 .2-1.7 1-2.5A6 6 0 0 0 12 3Z"/>',
+ capota:'<path d="M2 15h4l3-5h9l4 5"/><path d="M2 15v3h20v-3"/><path d="M9 10v5M14 10v5M18 10v5"/>',
+ caixa:'<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="12" r="3.5"/><circle cx="16.5" cy="12" r="3.5"/>',
+ chave:'<rect x="3" y="9" width="11" height="7" rx="3"/><path d="M14 12.5h7M18 12.5v3M8.5 12.5h.01"/>',
+ acess:'<path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6Z"/><path d="m9 12 2 2 4-4"/>'
+};
+const services=[
+ ['alarme','Alarmes','Instalação de alarmes automotivos com controle, sensor e bloqueio para mais segurança.'],
+ ['trava','Travas','Travas elétricas nas portas, acionamento pelo controle e integração com o alarme.'],
+ ['vidro','Vidros elétricos','Kit vidro elétrico, manutenção de máquinas e módulos de subida automática.'],
+ ['som','Som automotivo','Projetos de som, instalação de alto-falantes, módulos, subwoofers e multimídias.'],
+ ['insulfilm','Insulfilm','Película com proteção UV, mais conforto térmico e privacidade dentro das normas.'],
+ ['ar','Ar-condicionado','Manutenção, higienização e recarga do ar-condicionado automotivo.'],
+ ['eletrica','Auto elétrica','Diagnóstico e reparo elétrico, baterias, chicotes, faróis e acessórios.'],
+ ['lampada','Lâmpadas automotivas','Super LED, xenon e halógenas para farol, milha, lanterna e iluminação interna.'],
+ ['capota','Capotas marítimas','Capotas para picapes sob medida, instalação rápida e acabamento de qualidade.'],
+ ['caixa','Caixas personalizadas','Caixas de som sob medida para o seu porta-malas, com o acabamento que você quiser.'],
+ ['chave','Chaves canivete','Chave canivete com controle integrado, cópia e codificação.'],
+ ['acess','Acessórios em geral','Tapetes, sensores, câmeras de ré, engates, frisos e tudo para o seu carro.']
+];
+$('#svcGrid').innerHTML=services.map((s,i)=>`<article class="svc reveal" style="transition-delay:${(i%4)*70}ms"><span class="num">${String(i+1).padStart(2,'0')}</span><div class="ico"><svg viewBox="0 0 24 24">${I[s[0]]}</svg></div><h3>${s[1]}</h3><p>${s[2]}</p><a href="#" data-wa="Olá, Car Mania! Quero um orçamento de ${s[1]}.">Pedir orçamento →</a></article>`).join('');
+
+/* ---------- SHOP ---------- */
+let pid=0;
+const P={ // product illustrations
+ speaker:(c='#e3121b')=>{const n=++pid;return `<svg viewBox="0 0 200 200"><defs><radialGradient id="pc${n}" cx="45%" cy="40%" r="60%"><stop offset="0" stop-color="#45454d"/><stop offset="1" stop-color="#08080a"/></radialGradient><linearGradient id="pr${n}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f0f1f4"/><stop offset=".5" stop-color="#5d6068"/><stop offset="1" stop-color="#c8cbd2"/></linearGradient></defs><circle cx="100" cy="100" r="86" fill="#111" stroke="url(#pr${n})" stroke-width="6"/><circle cx="100" cy="100" r="70" fill="#1d1d22" stroke="${c}" stroke-width="3"/><circle cx="100" cy="100" r="62" fill="url(#pc${n})"/><circle cx="100" cy="100" r="50" fill="none" stroke="#000" stroke-opacity=".4"/><circle cx="100" cy="100" r="22" fill="#2b2d33" stroke="url(#pr${n})" stroke-width="3"/><circle cx="93" cy="93" r="6" fill="#fff" opacity=".2"/></svg>`},
+ sixnine:()=>{const n=++pid;return `<svg viewBox="0 0 200 200"><defs><radialGradient id="pc${n}" cx="45%" cy="40%" r="60%"><stop offset="0" stop-color="#45454d"/><stop offset="1" stop-color="#08080a"/></radialGradient></defs><ellipse cx="100" cy="100" rx="92" ry="64" fill="#111" stroke="#bfc2c9" stroke-width="5"/><ellipse cx="100" cy="100" rx="76" ry="52" fill="#1b1b20" stroke="#e3121b" stroke-width="3"/><ellipse cx="100" cy="100" rx="68" ry="45" fill="url(#pc${n})"/><circle cx="100" cy="100" r="18" fill="#2b2d33" stroke="#cfd2d8" stroke-width="2"/><circle cx="62" cy="88" r="9" fill="#ddd"/><circle cx="138" cy="88" r="9" fill="#ddd"/><circle cx="100" cy="66" r="7" fill="#ddd"/></svg>`},
+ sub:()=>{const n=++pid;return `<svg viewBox="0 0 200 200"><defs><radialGradient id="pc${n}" cx="45%" cy="40%" r="60%"><stop offset="0" stop-color="#3a3a42"/><stop offset="1" stop-color="#050506"/></radialGradient></defs><circle cx="100" cy="100" r="90" fill="#0d0d10" stroke="#e3121b" stroke-width="7"/><circle cx="100" cy="100" r="76" fill="#1a1a1f"/><circle cx="100" cy="100" r="70" fill="url(#pc${n})"/><circle cx="100" cy="100" r="34" fill="#141417" stroke="#e3121b" stroke-width="3"/><circle cx="100" cy="100" r="12" fill="#e3121b"/>${[0,45,90,135,180,225,270,315].map(a=>`<circle cx="${(100+83*Math.cos(a*Math.PI/180)).toFixed(1)}" cy="${(100+83*Math.sin(a*Math.PI/180)).toFixed(1)}" r="3" fill="#aaa"/>`).join('')}</svg>`},
+ tweeter:()=>`<svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="62" fill="#111" stroke="#c6c9cf" stroke-width="5"/><path d="M100 50a50 50 0 0 1 0 100" fill="none" stroke="#333" stroke-width="6"/><circle cx="100" cy="100" r="40" fill="#222"/><circle cx="100" cy="100" r="26" fill="#c9ccd3"/><circle cx="93" cy="93" r="9" fill="#fff" opacity=".5"/><rect x="40" y="150" width="120" height="14" rx="7" fill="#e3121b"/></svg>`,
+ radio:(scr='#2bd1ff')=>`<svg viewBox="0 0 200 200"><rect x="14" y="66" width="172" height="68" rx="8" fill="#141418" stroke="#4a4c53" stroke-width="3"/><rect x="22" y="74" width="156" height="52" rx="5" fill="#0a0a0c"/><rect x="62" y="82" width="86" height="22" rx="3" fill="${scr}" opacity=".9"/><text x="105" y="98" text-anchor="middle" font-family="Barlow" font-weight="800" font-size="12" fill="#00121a">BT · USB</text><circle cx="40" cy="100" r="15" fill="#2a2b30" stroke="#888" stroke-width="2"/><circle cx="40" cy="100" r="5" fill="#e3121b"/>${[0,1,2,3,4,5].map(i=>`<rect x="${64+i*14}" y="110" width="11" height="8" rx="2" fill="#2f3036"/>`).join('')}<rect x="156" y="82" width="16" height="36" rx="3" fill="#2a2b30"/><text x="100" y="152" text-anchor="middle" font-family="Barlow" font-weight="800" font-size="13" letter-spacing="5" fill="#bbb">PIONEER</text></svg>`,
+ multi:()=>{const n=++pid;return `<svg viewBox="0 0 200 200"><defs><linearGradient id="ms${n}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e3121b"/><stop offset=".5" stop-color="#4b0b2e"/><stop offset="1" stop-color="#0b1a3a"/></linearGradient></defs><rect x="16" y="44" width="168" height="112" rx="10" fill="#111" stroke="#55575e" stroke-width="3"/><rect x="26" y="52" width="148" height="88" rx="5" fill="url(#ms${n})"/>${[0,1,2,3].map(i=>`<rect x="${36+i*34}" y="66" width="26" height="26" rx="7" fill="#fff" opacity=".85"/>`).join('')}${[0,1,2,3].map(i=>`<rect x="${36+i*34}" y="102" width="26" height="26" rx="7" fill="#fff" opacity=".35"/>`).join('')}<rect x="80" y="146" width="40" height="4" rx="2" fill="#666"/></svg>`},
+ alarm:()=>`<svg viewBox="0 0 200 200"><rect x="64" y="26" width="72" height="148" rx="30" fill="#18181c" stroke="#55575e" stroke-width="3"/><circle cx="100" cy="68" r="18" fill="#e3121b"/><path d="M93 64v-4a7 7 0 0 1 14 0v4" fill="none" stroke="#fff" stroke-width="3"/><rect x="92" y="64" width="16" height="12" rx="2" fill="#fff"/><circle cx="100" cy="112" r="15" fill="#2c2d33"/><path d="M93 112h14" stroke="#ddd" stroke-width="3"/><circle cx="100" cy="148" r="11" fill="#2c2d33"/><circle cx="100" cy="36" r="3" fill="#ff3a40"/></svg>`,
+ key:()=>`<svg viewBox="0 0 200 200"><rect x="30" y="70" width="88" height="60" rx="22" fill="#1a1a1f" stroke="#55575e" stroke-width="3"/><circle cx="58" cy="92" r="9" fill="#2e2f35"/><circle cx="84" cy="92" r="9" fill="#2e2f35"/><rect x="50" y="108" width="44" height="10" rx="5" fill="#e3121b"/><path d="M118 92h56l8 8-8 8h-10l-4-4-4 4h-8l-4-4-4 4h-22z" fill="#cfd2d8" stroke="#888" stroke-width="2"/></svg>`,
+ bulb:(c='#fff')=>{const n=++pid;return `<svg viewBox="0 0 200 200"><defs><radialGradient id="bl${n}"><stop offset="0" stop-color="${c}"/><stop offset=".6" stop-color="${c}" stop-opacity=".35"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></radialGradient></defs><circle cx="100" cy="72" r="70" fill="url(#bl${n})"/><ellipse cx="100" cy="72" rx="26" ry="38" fill="#f5f8ff" opacity=".9"/><rect x="84" y="104" width="32" height="18" rx="3" fill="#d5d7dc"/>${[0,1,2,3,4].map(i=>`<rect x="${74+i*11}" y="122" width="7" height="42" rx="2" fill="#7a7d85"/>`).join('')}<rect x="70" y="160" width="60" height="16" rx="4" fill="#333"/><path d="M94 176v14M106 176v14" stroke="#c9a347" stroke-width="5"/></svg>`},
+ strip:()=>`<svg viewBox="0 0 200 200"><path d="M20 140c40-60 120-60 160-80" fill="none" stroke="#1d1d22" stroke-width="22" stroke-linecap="round"/>${Array.from({length:12},(_,i)=>{const t=i/11;const x=20+160*t,y=140-60*Math.sin(t*Math.PI*.6)-20*t;const cols=['#ff2a2f','#ff7a00','#ffe000','#38d97a','#2bd1ff','#7a5cff'];return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="5.5" fill="${cols[i%6]}"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="13" fill="${cols[i%6]}" opacity=".25"/>`}).join('')}</svg>`,
+ amp:()=>`<svg viewBox="0 0 200 200"><rect x="18" y="58" width="164" height="84" rx="8" fill="#141418" stroke="#55575e" stroke-width="3"/>${Array.from({length:14},(_,i)=>`<rect x="${26+i*11}" y="64" width="6" height="72" rx="2" fill="#26272c"/>`).join('')}<rect x="60" y="88" width="80" height="24" rx="4" fill="#e3121b"/><text x="100" y="105" text-anchor="middle" font-family="Barlow" font-weight="800" font-size="12" fill="#fff">4 CANAIS</text></svg>`,
+ box:()=>`<svg viewBox="0 0 200 200"><path d="M20 60h160l-10 90H30Z" fill="#1a1a1f" stroke="#3b3c42" stroke-width="3"/><path d="M20 60l14-14h132l14 14" fill="#26262c"/><circle cx="68" cy="104" r="32" fill="#0b0b0d" stroke="#e3121b" stroke-width="4"/><circle cx="68" cy="104" r="12" fill="#2a2b30"/><circle cx="132" cy="104" r="32" fill="#0b0b0d" stroke="#e3121b" stroke-width="4"/><circle cx="132" cy="104" r="12" fill="#2a2b30"/></svg>`,
+ cam:()=>`<svg viewBox="0 0 200 200"><rect x="40" y="70" width="120" height="60" rx="14" fill="#18181c" stroke="#55575e" stroke-width="3"/><circle cx="100" cy="100" r="22" fill="#0a0a0c" stroke="#888" stroke-width="3"/><circle cx="100" cy="100" r="10" fill="#1d3a6b"/><circle cx="96" cy="96" r="3" fill="#fff" opacity=".6"/></svg>`
+};
+const products=[
+ {c:'Alto-falantes',t:'Alto-falante 6" coaxial',d:'Som limpo e encorpado para as portas, ótimo custo-benefício.',i:P.speaker(),tag:'Mais vendido',hot:1},
+ {c:'Alto-falantes',t:'Alto-falante 6x9" quadriaxial',d:'Graves e agudos em um só componente para tampão traseiro.',i:P.sixnine()},
+ {c:'Alto-falantes',t:'Subwoofer 12"',d:'Pressão sonora de verdade para caixa selada ou dutada.',i:P.sub(),tag:'Grave',hot:1},
+ {c:'Alto-falantes',t:'Médio-grave 8"',d:'Para quem quer voz e batida forte no carro.',i:P.speaker('#ff7a00')},
+ {c:'Alto-falantes',t:'Tweeter / Super tweeter',d:'Agudos brilhantes e definidos para completar o kit.',i:P.tweeter()},
+ {c:'Rádios Pioneer',t:'Rádio Pioneer Bluetooth USB',d:'1-DIN com Bluetooth, USB e controle pelo celular.',i:P.radio(),tag:'Pioneer'},
+ {c:'Rádios Pioneer',t:'Rádio Pioneer MIXTRAX',d:'Iluminação personalizável e efeitos MIXTRAX para suas músicas.',i:P.radio('#ff4b4b'),tag:'Pioneer'},
+ {c:'Multimídias',t:'Multimídia 2-DIN 7"',d:'Tela touch, espelhamento do celular e câmera de ré.',i:P.multi(),tag:'Novidade',hot:1},
+ {c:'Multimídias',t:'Multimídia Android Auto / CarPlay',d:'GPS, Spotify e apps na tela do seu painel.',i:P.multi()},
+ {c:'Multimídias',t:'Câmera de ré',d:'Mais segurança para manobrar, integra com a multimídia.',i:P.cam()},
+ {c:'Alarmes',t:'Alarme automotivo com controle',d:'Bloqueio, sensor de presença e sirene de alta potência.',i:P.alarm()},
+ {c:'Alarmes',t:'Chave canivete com controle',d:'Moderniza a chave do seu carro com controle integrado.',i:P.key()},
+ {c:'Lâmpadas',t:'Super LED farol H4 / H7',d:'Luz branca intensa e mais alcance no farol.',i:P.bulb('#cfe6ff'),tag:'Top',hot:1},
+ {c:'Lâmpadas',t:'Lâmpada halógena',d:'Reposição para farol, milha e lanterna.',i:P.bulb('#ffd27a')},
+ {c:'LEDs',t:'Fita de LED RGB',d:'Iluminação interna e externa com várias cores e efeitos.',i:P.strip()},
+ {c:'LEDs',t:'LED pingo / cortesia',d:'Lanterna, placa e luz interna em LED.',i:P.bulb('#ffffff')},
+ {c:'Módulos e caixas',t:'Módulo amplificador 4 canais',d:'Potência para alimentar todo o seu som.',i:P.amp()},
+ {c:'Módulos e caixas',t:'Caixa de som personalizada',d:'Projeto sob medida para o seu porta-malas.',i:P.box()}
+];
+const cats=['Todos',...new Set(products.map(p=>p.c))];
+$('#filters').innerHTML=cats.map((c,i)=>`<button class="chip${i?'':' on'}" data-c="${c}">${c}</button>`).join('');
+$('#prodGrid').innerHTML=products.map((p,i)=>`<article class="prod reveal" data-c="${p.c}"><div class="pic">${p.tag?`<span class="tag${p.hot?' hot':''}">${p.tag}</span>`:''}${p.i}</div><div class="body"><span class="kicker" style="font-size:.62rem">${p.c}</span><h3>${p.t}</h3><p class="desc">${p.d}</p><div class="row"><a class="ask" href="#" data-wa="Olá, Car Mania! Quero saber o preço de: ${p.t}.">Consultar</a><button class="add" data-i="${i}">+ Lista</button></div></div></article>`).join('');
+$('#filters').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===b));const c=b.dataset.c;document.querySelectorAll('.prod').forEach(p=>{p.classList.toggle('hide',c!=='Todos'&&p.dataset.c!==c);p.classList.add('in')});});
+
+/* cart */
+const cart=new Map();
+function renderCart(){
+  const n=[...cart.values()].reduce((a,b)=>a+b,0);
+  $('#cartCount').textContent=n;$('#cartFab').classList.toggle('show',n>0);
+  $('#cartList').innerHTML=[...cart].map(([i,q])=>`<li><span>${products[i].t}</span><span class="q"><button data-m="${i}">−</button>${q}<button data-p="${i}">+</button></span></li>`).join('')||'<li>Nenhum item ainda.</li>';
+  const msg='Olá, Car Mania! Gostaria de um orçamento destes itens:\n'+[...cart].map(([i,q])=>`• ${q}x ${products[i].t}`).join('\n');
+  $('#cartSend').href=waLink(msg);$('#cartSend').target='_blank';
+  document.querySelectorAll('.add').forEach(b=>{const on=cart.has(+b.dataset.i);b.classList.toggle('added',on);b.textContent=on?'✓ Na lista':'+ Lista'});
+}
+$('#prodGrid').addEventListener('click',e=>{const b=e.target.closest('.add');if(!b)return;const i=+b.dataset.i;cart.set(i,(cart.get(i)||0)+1);renderCart();});
+$('#cartList').addEventListener('click',e=>{const t=e.target;if(t.dataset.p){const i=+t.dataset.p;cart.set(i,cart.get(i)+1)}if(t.dataset.m){const i=+t.dataset.m;const q=cart.get(i)-1;q>0?cart.set(i,q):cart.delete(i)}renderCart();});
+$('#cartFab').onclick=()=>$('#drawer').classList.add('open');
+document.querySelectorAll('[data-close]').forEach(x=>x.onclick=()=>$('#drawer').classList.remove('open'));
+renderCart();
+
+/* ---------- REVEAL ---------- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---------- TOUR 360 ---------- */
+let panoDone=false;
+const tio=new IntersectionObserver(es=>{if(es[0].isIntersecting&&!panoDone&&window.pannellum){panoDone=true;
+  pannellum.viewer('pano',{type:'equirectangular',panorama:'tour-fachada.jpg',autoLoad:true,autoRotate:-2,showControls:true,compass:false,hfov:105,pitch:-2,yaw:0,mouseZoom:false});tio.disconnect();}},{rootMargin:'300px'});
+window.addEventListener('load',()=>tio.observe($('#tourFrame')));
+
+bindWA();
+requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
