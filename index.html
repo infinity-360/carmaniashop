@@ -188,6 +188,34 @@ section{position:relative;max-width:100%}
 .drawer li .q button{width:26px;height:26px;border-radius:8px;border:1px solid #333;font-weight:800}
 .drawer .x{position:absolute;top:1.2rem;right:1.2rem;font-size:1.6rem;opacity:.7}
 
+/* ===== STETSOM ===== */
+.stet{background:linear-gradient(180deg,var(--bg),#101013 30%,var(--bg))}
+.crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin-bottom:1.6rem;font-weight:700;font-size:.9rem;color:var(--muted);min-height:1.5rem}
+.crumbs button{color:var(--white);text-decoration:underline;text-underline-offset:3px}
+.crumbs button:hover{color:var(--red2)}
+.crumbs .sep{opacity:.5}
+.st-back{display:inline-flex;align-items:center;gap:.4rem;padding:.55rem 1rem;border-radius:999px;border:1.5px solid var(--line);font-weight:800;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;margin-right:.6rem}
+.st-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem}
+.st-grid.series{grid-template-columns:repeat(4,1fr)}
+.st-card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;text-align:left;display:flex;flex-direction:column;transition:transform .3s,border-color .3s;width:100%}
+.st-card:hover{transform:translateY(-5px);border-color:rgba(227,18,27,.7)}
+.st-card .im{aspect-ratio:1/0.8;background:radial-gradient(circle at 50% 45%,#ffffff 0%,#e9eaee 75%);display:grid;place-items:center;overflow:hidden}
+.st-card .im img{width:84%;height:84%;object-fit:contain;transition:transform .5s}
+.st-card:hover .im img{transform:scale(1.07)}
+.st-card .tx{padding:.9rem 1rem 1rem;display:flex;justify-content:space-between;align-items:center;gap:.5rem}
+.st-card h3{font-family:'Bebas Neue';font-size:1.45rem;letter-spacing:.03em;line-height:1}
+.st-card small{color:var(--muted);font-weight:700;font-size:.75rem;white-space:nowrap}
+.st-card .arr{color:var(--red2);font-weight:800}
+.st-prods{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem}
+.st-prods .prod .pic{background:radial-gradient(circle at 50% 45%,#ffffff 0%,#e9eaee 75%)}
+.st-prods .prod .pic img{width:86%;height:86%;object-fit:contain;transition:transform .5s}
+.st-prods .prod:hover .pic img{transform:scale(1.06)}
+.st-prods .prod .row a.ficha{border:1.5px solid #3a3a42}
+.st-prods .prod .row3{display:flex;gap:.5rem;margin-top:.5rem}
+.st-prods .prod .row3 a{flex:1;text-align:center;padding:.55rem .4rem;border-radius:10px;font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border:1px dashed #33333a}
+.st-prods .prod .row3 a:hover{color:#fff;border-color:#555}
+@media(max-width:1000px){.st-grid{grid-template-columns:repeat(3,1fr)}.st-grid.series,.st-prods{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:760px){.st-grid,.st-grid.series,.st-prods{grid-template-columns:repeat(2,1fr)}.st-card h3{font-size:1.2rem}.st-card .tx{flex-direction:column;align-items:flex-start;gap:.2rem}}
 /* ===== TOUR ===== */
 .tour .frame{position:relative;border-radius:24px;overflow:hidden;border:1px solid var(--line);height:min(70vh,620px);background:#111;box-shadow:0 40px 80px -40px rgba(227,18,27,.35)}
 #pano{width:100%;height:100%}
@@ -278,6 +306,7 @@ footer a:hover{color:#fff}
     <nav class="nav-links">
       <a href="#servicos">Serviços</a>
       <a href="#shop">Car Mania Shop</a>
+      <a href="#stetsom">Stetsom</a>
       <a href="#tour">Tour 360°</a>
       <a href="#contato">Contato</a>
     </nav>
@@ -353,6 +382,19 @@ footer a:hover{color:#fff}
     <div class="filters" id="filters"></div>
     <div class="prod-grid" id="prodGrid"></div>
     <p class="shop-note">Imagens ilustrativas. Modelos, marcas e estoque sujeitos à disponibilidade — consulte pelo WhatsApp.</p>
+  </div>
+</section>
+
+<!-- STETSOM -->
+<section class="sec stet" id="stetsom">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="kicker">Linha completa</div><h2 class="h-display">Produtos Stetsom</h2></div>
+      <p>Amplificadores, processadores, fontes, controles e acessórios Stetsom. Escolha a linha, veja os modelos e peça seu orçamento pelo WhatsApp.</p>
+    </div>
+    <nav class="crumbs" id="stCrumbs"></nav>
+    <div id="stView"></div>
+    <p class="shop-note">Imagens e informações técnicas: <a href="https://stetsom.com.br/pt/produtos/" target="_blank" rel="noopener" style="text-decoration:underline">stetsom.com.br</a>. Consulte disponibilidade e preço na Car Mania.</p>
   </div>
 </section>
 
@@ -434,6 +476,7 @@ footer a:hover{color:#fff}
 
 <a class="wa-fab" href="#" data-wa="Olá, Car Mania! Vim pelo site e gostaria de um orçamento." aria-label="WhatsApp Car Mania"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.4.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.6 2.1 1.1 1 2 1.3 2.3 1.4.3.2.4.1.6-.1l.8-1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.2 1.4Z"/></svg></a>
 
+<script src="stetsom-data.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js" defer></script>
 <script>
 (()=>{
@@ -637,6 +680,7 @@ const services=[
 $('#svcGrid').innerHTML=services.map((s,i)=>`<article class="svc reveal" style="transition-delay:${(i%4)*70}ms"><span class="num">${String(i+1).padStart(2,'0')}</span><div class="ico"><svg viewBox="0 0 24 24">${I[s[0]]}</svg></div><h3>${s[1]}</h3><p>${s[2]}</p><a href="#" data-wa="Olá, Car Mania! Quero um orçamento de ${s[1]}.">Pedir orçamento →</a></article>`).join('');
 
 /* ---------- SHOP ---------- */
+const esc=t=>t.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
 let pid=0;
 const P={ // product illustrations
  speaker:(c='#e3121b')=>{const n=++pid;return `<svg viewBox="0 0 200 200"><defs><radialGradient id="pc${n}" cx="45%" cy="40%" r="60%"><stop offset="0" stop-color="#45454d"/><stop offset="1" stop-color="#08080a"/></radialGradient><linearGradient id="pr${n}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f0f1f4"/><stop offset=".5" stop-color="#5d6068"/><stop offset="1" stop-color="#c8cbd2"/></linearGradient></defs><circle cx="100" cy="100" r="86" fill="#111" stroke="url(#pr${n})" stroke-width="6"/><circle cx="100" cy="100" r="70" fill="#1d1d22" stroke="${c}" stroke-width="3"/><circle cx="100" cy="100" r="62" fill="url(#pc${n})"/><circle cx="100" cy="100" r="50" fill="none" stroke="#000" stroke-opacity=".4"/><circle cx="100" cy="100" r="22" fill="#2b2d33" stroke="url(#pr${n})" stroke-width="3"/><circle cx="93" cy="93" r="6" fill="#fff" opacity=".2"/></svg>`},
@@ -674,24 +718,63 @@ const products=[
 ];
 const cats=['Todos',...new Set(products.map(p=>p.c))];
 $('#filters').innerHTML=cats.map((c,i)=>`<button class="chip${i?'':' on'}" data-c="${c}">${c}</button>`).join('');
-$('#prodGrid').innerHTML=products.map((p,i)=>`<article class="prod reveal" data-c="${p.c}"><div class="pic${p.img?' photo'+(p.fit==='cover'?' cover':''):''}">${p.tag?`<span class="tag${p.hot?' hot':''}">${p.tag}</span>`:''}${p.img?`<img src="${p.img}" alt="${p.t}" loading="lazy">`:p.i}</div><div class="body"><span class="kicker" style="font-size:.62rem">${p.c}</span><h3>${p.t}</h3><p class="desc">${p.d}</p><div class="row"><a class="ask" href="#" data-wa="Olá, Car Mania! Quero saber o preço de: ${p.t}.">Consultar</a><button class="add" data-i="${i}">+ Lista</button></div></div></article>`).join('');
+$('#prodGrid').innerHTML=products.map((p,i)=>`<article class="prod reveal" data-c="${p.c}"><div class="pic${p.img?' photo'+(p.fit==='cover'?' cover':''):''}">${p.tag?`<span class="tag${p.hot?' hot':''}">${p.tag}</span>`:''}${p.img?`<img src="${p.img}" alt="${p.t}" loading="lazy">`:p.i}</div><div class="body"><span class="kicker" style="font-size:.62rem">${p.c}</span><h3>${p.t}</h3><p class="desc">${p.d}</p><div class="row"><a class="ask" href="#" data-wa="Olá, Car Mania! Quero saber o preço de: ${p.t}.">Consultar</a><button class="add" data-add="${esc(p.t)}">+ Lista</button></div></div></article>`).join('');
 $('#filters').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===b));const c=b.dataset.c;document.querySelectorAll('.prod').forEach(p=>{p.classList.toggle('hide',c!=='Todos'&&p.dataset.c!==c);p.classList.add('in')});});
 
-/* cart */
+/* cart (keyed by product name) */
 const cart=new Map();
+function addToCart(n){cart.set(n,(cart.get(n)||0)+1);renderCart();}
 function renderCart(){
   const n=[...cart.values()].reduce((a,b)=>a+b,0);
   $('#cartCount').textContent=n;$('#cartFab').classList.toggle('show',n>0);
-  $('#cartList').innerHTML=[...cart].map(([i,q])=>`<li><span>${products[i].t}</span><span class="q"><button data-m="${i}">−</button>${q}<button data-p="${i}">+</button></span></li>`).join('')||'<li>Nenhum item ainda.</li>';
-  const msg='Olá, Car Mania! Gostaria de um orçamento destes itens:\n'+[...cart].map(([i,q])=>`• ${q}x ${products[i].t}`).join('\n');
+  const keys=[...cart.keys()];
+  $('#cartList').innerHTML=keys.map((k,j)=>`<li><span>${esc(k)}</span><span class="q"><button data-m="${j}">−</button>${cart.get(k)}<button data-p="${j}">+</button></span></li>`).join('')||'<li>Nenhum item ainda.</li>';
+  const msg='Olá, Car Mania! Gostaria de um orçamento destes itens:\n'+keys.map(k=>`• ${cart.get(k)}x ${k}`).join('\n');
   $('#cartSend').href=waLink(msg);$('#cartSend').target='_blank';
-  document.querySelectorAll('.add').forEach(b=>{const on=cart.has(+b.dataset.i);b.classList.toggle('added',on);b.textContent=on?'✓ Na lista':'+ Lista'});
+  document.querySelectorAll('[data-add]').forEach(b=>{const on=cart.has(b.dataset.add);b.classList.toggle('added',on);b.textContent=on?'✓ Na lista':'+ Lista'});
 }
-$('#prodGrid').addEventListener('click',e=>{const b=e.target.closest('.add');if(!b)return;const i=+b.dataset.i;cart.set(i,(cart.get(i)||0)+1);renderCart();});
-$('#cartList').addEventListener('click',e=>{const t=e.target;if(t.dataset.p){const i=+t.dataset.p;cart.set(i,cart.get(i)+1)}if(t.dataset.m){const i=+t.dataset.m;const q=cart.get(i)-1;q>0?cart.set(i,q):cart.delete(i)}renderCart();});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-add]');if(b)addToCart(b.dataset.add);});
+$('#cartList').addEventListener('click',e=>{const t=e.target;const keys=[...cart.keys()];if(t.dataset.p){const k=keys[+t.dataset.p];cart.set(k,cart.get(k)+1)}if(t.dataset.m){const k=keys[+t.dataset.m];const q=cart.get(k)-1;q>0?cart.set(k,q):cart.delete(k)}renderCart();});
 $('#cartFab').onclick=()=>$('#drawer').classList.add('open');
 document.querySelectorAll('[data-close]').forEach(x=>x.onclick=()=>$('#drawer').classList.remove('open'));
 renderCart();
+
+
+/* ---------- STETSOM ---------- */
+(function(){
+  const D=window.STETSOM||[],SN=window.STETSOM_SERIES||{};
+  const IMG='https://stetsom.com.br/wp-content/uploads/',PURL='https://stetsom.com.br/pt/produto/';
+  const view=$('#stView'),cr=$('#stCrumbs');
+  const cats=D.map(([n,slug,series,direct])=>({n,slug,series:series.map(([_,s,img,ps])=>({n:SN[s]||s,slug:s,img,ps})),direct,
+    count:direct.length+series.reduce((a,s)=>a+s[3].length,0)}));
+  cats.forEach(c=>{c.img=(c.series[0]&&(c.series[0].ps[0]||[])[2])||(c.direct[0]||[])[2]||(c.series[0]||{}).img});
+  const im=(p,alt)=>`<img src="${IMG+p}" alt="${esc(alt)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.opacity=.15">`;
+  const card=(img,name,sub,data)=>`<button class="st-card" ${data}><div class="im">${im(img,name)}</div><div class="tx"><h3>${esc(name)}</h3><small>${sub} <span class="arr">→</span></small></div></button>`;
+  const prodCard=([n,slug,img])=>`<article class="prod"><div class="pic">${im(img,n)}</div><div class="body"><span class="kicker" style="font-size:.62rem">Stetsom</span><h3>${esc(n)}</h3><div class="row"><a class="ask" href="${waLink('Olá, Car Mania! Quero saber o preço do Stetsom '+n+'.')}" target="_blank" rel="noopener">Consultar</a><button class="add" data-add="${esc('Stetsom '+n)}">+ Lista</button></div><div class="row3"><a href="${PURL+slug}/" target="_blank" rel="noopener">Ficha técnica ↗</a></div></div></article>`;
+  let st={c:null,s:null};
+  function crumbs(){
+    const parts=[`<button data-go="root">Linhas Stetsom</button>`];
+    if(st.c!=null){parts.push('<span class="sep">›</span>');parts.push(st.s!=null?`<button data-go="cat">${esc(cats[st.c].n)}</button>`:`<span>${esc(cats[st.c].n)}</span>`)}
+    if(st.s!=null){parts.push('<span class="sep">›</span>');parts.push(`<span>${esc(cats[st.c].series[st.s].n)}</span>`)}
+    cr.innerHTML=(st.c!=null?`<button class="st-back" data-go="back">← Voltar</button>`:'')+parts.join(' ');
+  }
+  function render(scroll){
+    let h='';
+    if(st.c==null){h=`<div class="st-grid">${cats.map((c,i)=>card(c.img,c.n,c.count+(c.count>1?' produtos':' produto'),`data-cat="${i}"`)).join('')}</div>`;}
+    else{const c=cats[st.c];
+      if(st.s==null){
+        if(c.series.length) h+=`<div class="st-grid series">${c.series.map((s,i)=>card(s.ps[0]?s.ps[0][2]:s.img,s.n,s.ps.length+(s.ps.length>1?' modelos':' modelo'),`data-ser="${i}"`)).join('')}</div>`;
+        if(c.direct.length) h+=`<div class="st-prods">${c.direct.map(prodCard).join('')}</div>`;
+      } else h=`<div class="st-prods">${c.series[st.s].ps.map(prodCard).join('')}</div>`;
+    }
+    view.innerHTML=h;crumbs();renderCart();
+    if(scroll){const y=$('#stetsom').getBoundingClientRect().top+scrollY+60;if(Math.abs(scrollY-y)>200)scrollTo({top:y,behavior:'smooth'});}
+  }
+  view.addEventListener('click',e=>{const a=e.target.closest('[data-cat]');if(a){st={c:+a.dataset.cat,s:null};return render(true)}const b=e.target.closest('[data-ser]');if(b){st.s=+b.dataset.ser;render(true)}});
+  cr.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(!g)return;const v=g.dataset.go;
+    if(v==='root')st={c:null,s:null};else if(v==='cat')st.s=null;else if(v==='back'){if(st.s!=null)st.s=null;else st.c=null}render(true)});
+  render(false);
+})();
 
 /* ---------- REVEAL ---------- */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
